@@ -33,78 +33,46 @@ Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
 #Can be accomplished with one turtle and one for loop( by using clones, I think(haven't tested) ) but not the objective
 
 import rosegraphics as rg
+import math
 window = rg.TurtleWindow()
 window.delay(0.25)
 
-#Define turtles for different colors
-#Not efficient but simple
+#Define turtle for drawing
 redTurtle = rg.SimpleTurtle()
 redTurtle.pen = rg.Pen('red',10)
 
-orangeTurtle = rg.SimpleTurtle()
-orangeTurtle.pen = rg.Pen('orange',10)
+#define array of colors
+colors = ['red','orange','yellow','green','blue','purple']
 
-yellowTurtle = rg.SimpleTurtle()
-yellowTurtle.pen = rg.Pen('yellow',10)
+#cycle through every color in the array
+for i in range(6):
+    #Set pen color to the color based on position in array, arranged for rainbow
+    redTurtle.pen = rg.Pen(colors[i],10)
+    #Move forward to starting position and face up
+    redTurtle.pen_up()
+    redTurtle.forward(10*i)
+    redTurtle.pen_down()
+    redTurtle.left(90)
+    #Make a 180 degree arc
+    for k in range(180):
+        #18 because 180, number has to relate to pi because it's a circular arc
+        redTurtle.forward(2-((math.pi / 18)*i))
+        redTurtle.right(1)
+    #Return to initial position and orientation
+    redTurtle.pen_up()
+    redTurtle.go_to(rg.Point(0,0))
+    redTurtle.pen_down()
+    redTurtle.left(90)
 
-greenTurtle = rg.SimpleTurtle()
-greenTurtle.pen = rg.Pen('green',10)
-
-blueTurtle = rg.SimpleTurtle()
-blueTurtle.pen = rg.Pen('blue',10)
-
-purpleTurtle = rg.SimpleTurtle()
-purpleTurtle.pen = rg.Pen('purple',10)
-
-#Change turtles orientation from right to up
-redTurtle.left(90)
-#Create a 180 degree arc
-for i in range(180):
-    #Red turtle moves forward 2, the rest move forward by a 0.18 decrement
-    redTurtle.forward(2.0)
-    redTurtle.right(1)
-
-#Move turtle to starting position and rotate
-orangeTurtle.pen_up()
-orangeTurtle.forward(10)
-orangeTurtle.pen_down()
-orangeTurtle.left(90)
-#Rest of code is copied from my previous code and repurposed
-for i in range(180):
-    orangeTurtle.forward(1.82)
-    orangeTurtle.right(1)
-
-yellowTurtle.pen_up()
-yellowTurtle.forward(20)
-yellowTurtle.pen_down()
-yellowTurtle.left(90)
-for i in range(180):
-    yellowTurtle.forward(1.64)
-    yellowTurtle.right(1)
-
-greenTurtle.pen_up()
-greenTurtle.forward(30)
-greenTurtle.pen_down()
-greenTurtle.left(90)
-for i in range(180):
-    greenTurtle.forward(1.46)
-    greenTurtle.right(1)
-
-blueTurtle.pen_up()
-blueTurtle.forward(40)
-blueTurtle.pen_down()
-blueTurtle.left(90)
-for i in range(180):
-    blueTurtle.forward(1.28)
-    blueTurtle.right(1)
-
-purpleTurtle.pen_up()
-purpleTurtle.forward(50)
-purpleTurtle.pen_down()
-purpleTurtle.left(90)
-for i in range(180):
-    purpleTurtle.forward(1.10)
-    purpleTurtle.right(1)
+#define second turtle
+blackTurtle = rg.SimpleTurtle()
+blackTurtle.pen = rg.Pen('black',10)
+#move black turtle down 5 because that is the radius of the pen
+blackTurtle.pen_up()
+blackTurtle.go_to(rg.Point(0,-5))
+blackTurtle.pen_down()
+#draw black underline
+blackTurtle.forward(230)
 
 #close window on click
 window.close_on_mouse_click()
