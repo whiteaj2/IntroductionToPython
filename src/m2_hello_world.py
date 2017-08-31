@@ -3,6 +3,8 @@ print('Andrew')
 product = 3607*34227
 factor1 = '3607'
 factor2 = '34227'
+print(3607*34227)
+#Different ways to accomplish the same thing
 print(product)
 print(int(factor1)*int(factor2), 'Do they match?')
 
@@ -82,7 +84,7 @@ print(int(factor1)*int(factor2), 'Do they match?')
 
 ########################################################################
 #
-# TODO: 5.
+# DONE: 5.
 #   Look at the list of files in this project to the left.
 #   Note that this file (m2_hello_world.py) is now displayed in a blue
 #   font color (if the file is highlighted select a different file so yu can
